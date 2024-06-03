@@ -9,7 +9,10 @@ import (
 
 // 接收视频号回调事件示例
 func CallbackMain() {
-	if err := CallbackRepo.InitCallbackHandler(); err != nil {
+
+	client, err := CallbackRepo.InitCallbackHandler()
+
+	if err != nil {
 		fmt.Printf("error: %v\n", err)
 		return
 	}
@@ -18,7 +21,7 @@ func CallbackMain() {
 
 	// 接收视频号小店回调事件
 	e.GET("/callback/shop", func(c echo.Context) error {
-		channels.Sdk.ShopCallback.EchoTestHandler(c.Response().Writer, c.Request())
+		client.ShopCallback.EchoTestHandler(c.Response().Writer, c.Request())
 		return nil
 	})
 	e.POST("/callback/shop", func(c echo.Context) error {
@@ -32,7 +35,7 @@ func CallbackMain() {
 
 	// 接收视频号橱窗回调事件
 	e.GET("/callback/window", func(c echo.Context) error {
-		channels.Sdk.WindowCallback.EchoTestHandler(c.Response().Writer, c.Request())
+		client.WindowCallback.EchoTestHandler(c.Response().Writer, c.Request())
 		return nil
 	})
 	e.POST("/callback/window", func(c echo.Context) error {
@@ -53,18 +56,19 @@ type callbackRepo struct{}
 var CallbackRepo = new(callbackRepo)
 
 // 回调事件初始化
-func (callbackRepo) InitCallbackHandler() error {
+func (callbackRepo) InitCallbackHandler() (*channels.Sdk, error) {
 	// 视频号小店回调事件解析
-	if err := channels.Sdk.NewShopCallbackHandler(ShopCallbackToken, ShopCallbackEncodingAESKey); err != nil {
-		return err
+	client := channels.NewSdk()
+	if err := client.NewShopCallbackHandler(ShopCallbackToken, ShopCallbackEncodingAESKey); err != nil {
+		return nil, err
 	}
 
 	// 视频号橱窗回调事件解析
-	if err := channels.Sdk.NewWindowCallbackHandler(WindowCallbackToken, WindowCallbackEncodingAESKey); err != nil {
-		return err
+	if err := client.NewWindowCallbackHandler(WindowCallbackToken, WindowCallbackEncodingAESKey); err != nil {
+		return nil, err
 	}
 
-	return nil
+	return nil, nil
 }
 
 // 处理视频号小店回调事件
