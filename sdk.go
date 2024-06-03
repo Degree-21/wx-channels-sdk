@@ -7,9 +7,12 @@ import (
 )
 
 // 微信视频号 sdk 调用入口
-var Sdk = &sdk{}
+// var Sdk = &sdk{}
+func NewSdk() *Sdk {
+	return &Sdk{}
+}
 
-type sdk struct {
+type Sdk struct {
 	// 视频号小店
 	ShopCallback *callbacks.CallbackHandler // 回调事件解析
 	ShopClient   *apis.ApiClient            // API客户端，用于视频号小店的接口调用
@@ -22,12 +25,12 @@ type sdk struct {
 }
 
 // 初始化sdk参数
-func (s *sdk) InitOptions(opts apis.Options) {
+func (s *Sdk) InitOptions(opts apis.Options) {
 	s.Options = opts
 }
 
 // 视频号小店：回调事件初始化 (如果要处理微信回调, 这一步是必须的)
-func (s *sdk) NewShopCallbackHandler(token, encodingAESKey string) error {
+func (s *Sdk) NewShopCallbackHandler(token, encodingAESKey string) error {
 	if token == "" || encodingAESKey == "" {
 		return errors.New("传参不能为空")
 	}
@@ -39,12 +42,12 @@ func (s *sdk) NewShopCallbackHandler(token, encodingAESKey string) error {
 }
 
 // 视频号小店：API客户端初始化
-func (s *sdk) NewShopApiClient(appId, appSecret string) {
+func (s *Sdk) NewShopApiClient(appId, appSecret string) {
 	s.ShopClient = apis.NewApiClient(appId, appSecret, s.Options)
 }
 
 // 视频号橱窗：回调事件初始化 (如果要处理微信回调, 这一步是必须的)
-func (s *sdk) NewWindowCallbackHandler(token, encodingAESKey string) error {
+func (s *Sdk) NewWindowCallbackHandler(token, encodingAESKey string) error {
 	if token == "" || encodingAESKey == "" {
 		return errors.New("传参不能为空")
 	}
@@ -56,6 +59,6 @@ func (s *sdk) NewWindowCallbackHandler(token, encodingAESKey string) error {
 }
 
 // 视频号橱窗：API客户端初始化
-func (s *sdk) NewWindowApiClient(appId, appSecret string) {
+func (s *Sdk) NewWindowApiClient(appId, appSecret string) {
 	s.WindowClient = apis.NewApiClient(appId, appSecret, s.Options)
 }
