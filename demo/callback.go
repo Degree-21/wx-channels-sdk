@@ -73,7 +73,9 @@ func (callbackRepo) InitCallbackHandler() (*channels.Sdk, error) {
 
 // 处理视频号小店回调事件
 func (callbackRepo) HandleShopPostReqShouest(c echo.Context) error {
-	msg, err := channels.Sdk.ShopCallback.GetCallbackMsg(c.Request())
+	// TODO 代码有问题实例化
+	client := channels.NewSdk()
+	msg, err := client.ShopCallback.GetCallbackMsg(c.Request())
 	if err != nil {
 		return err
 	}
@@ -106,7 +108,9 @@ func (callbackRepo) HandleShopPostReqShouest(c echo.Context) error {
 
 // 处理视频号橱窗回调事件
 func (r callbackRepo) HandleWindowPostRequest(c echo.Context) error {
-	msg, err := channels.Sdk.WindowCallback.GetCallbackMsg(c.Request())
+	// TODO 代码有问题实例化
+	client := channels.NewSdk()
+	msg, err := client.WindowCallback.GetCallbackMsg(c.Request())
 	if err != nil {
 		return err
 	}
