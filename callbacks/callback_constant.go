@@ -34,12 +34,6 @@ const MessageTypeUnknown MessageType = "unknown"
 // 事件类型
 type EventType string
 
-// 小店注销回调事件
-const EventTypeChannelsEcCloseStore EventType = "channels_ec_close_store"
-
-// 分享员变更回调
-const EventTypeChannelsEcSharerChange = "channels_ec_sharer_change"
-
 // 商品上下架
 const EventTypeProductSpuListing EventType = "product_spu_listing"
 
@@ -93,3 +87,9 @@ const EventTypeQrcodeStatus EventType = "qrcode_status"
 
 // 订单其他信息更新
 const EventTypeChannelsEcOrderExtInfoUpdate EventType = "channels_ec_order_ext_info_update"
+
+// 分享员变更回调
+const EventTypeChannelsEcSharerChange EventType = "channels_ec_sharer_change"
+
+// 小店注销回调事件
+const EventTypeChannelsEcCloseStore EventType = "channels_ec_close_store"
