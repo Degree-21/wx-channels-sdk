@@ -34,6 +34,9 @@ const MessageTypeUnknown MessageType = "unknown"
 // 事件类型
 type EventType string
 
+// 小店注销回调事件
+const EventTypeChannelsEcCloseStore EventType = "channels_ec_close_store"
+
 // 商品上下架
 const EventTypeProductSpuListing EventType = "product_spu_listing"
 
