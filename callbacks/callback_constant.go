@@ -37,6 +37,9 @@ type EventType string
 // 小店注销回调事件
 const EventTypeChannelsEcCloseStore EventType = "channels_ec_close_store"
 
+// 分享员变更回调
+const EventTypeChannelsEcSharerChange = "channels_ec_sharer_change"
+
 // 商品上下架
 const EventTypeProductSpuListing EventType = "product_spu_listing"
 
