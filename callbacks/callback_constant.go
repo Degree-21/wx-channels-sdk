@@ -93,3 +93,45 @@ const EventTypeChannelsEcSharerChange EventType = "channels_ec_sharer_change"
 
 // 小店注销回调事件
 const EventTypeChannelsEcCloseStore EventType = "channels_ec_close_store"
+
+// 创建优惠券通知
+const EventTypeChannelsEcCouponCreate EventType = "channels_ec_coupon_create"
+
+// 删除优惠券通知
+const EventTypeChannelsEcCouponDelete EventType = "channels_ec_coupon_delete"
+
+// 优惠券过期通知
+const EventTypeChannelsEcCouponExpire EventType = "channels_ec_coupon_expire"
+
+// 优惠券信息更新通知
+const EventTypeChannelsEcCouponInfoChange EventType = "channels_ec_coupon_info_change"
+
+// 作废优惠券通知
+const EventTypeChannelsEcCouponInvalid EventType = "channels_ec_coupon_invalid"
+
+// 用户优惠券过期通知
+const EventTypeChannelsEcUserCouponExpire EventType = "channels_ec_user_coupon_expire"
+
+// 优惠券返还通知
+const EventTypeChannelsEcUserCouponUnuse EventType = "channels_ec_user_coupon_unuse"
+
+// 优惠券核销通知
+const EventTypeChannelsEcUserCouponUse EventType = "channels_ec_user_coupon_use"
+
+// 用户加入会员通知
+const EventTypeChannelsEcVipJoin EventType = "channels_ec_vip_join"
+
+// 用户注销会员通知
+const EventTypeChannelsEcVipClose EventType = "channels_ec_vip_close"
+
+// 用户等级信息更新通知
+const EventTypeChannelsEcVipGradeInfoUpdate EventType = "channels_ec_vip_grade_info_update"
+
+// 用户获得任务奖励通知
+const EventTypeChannelsEcVipTaskAward EventType = "channels_ec_vip_task_award"
+
+// 用户积分更新通知
+const EventTypeChannelsEcVipScoreUpdate EventType = "channels_ec_vip_score_update"
+
+// 用户积分兑换通知
+const EventTypeChannelsEcVipScoreExchange EventType = "channels_ec_vip_score_exchange"
