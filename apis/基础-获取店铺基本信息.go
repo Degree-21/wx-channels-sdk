@@ -2,18 +2,17 @@ package apis
 
 import (
 	"encoding/json"
-
 	"net/url"
 )
 
 // 获取店铺基本信息
 // 文档：https://developers.weixin.qq.com/doc/channels/API/basics/getbasicinfo.html
 
-type ReqEcBasicsInfoGet struct{}
+type ReqBasicsInfoGet struct{}
 
-var _ urlValuer = ReqEcBasicsInfoGet{}
+var _ urlValuer = ReqBasicsInfoGet{}
 
-func (x ReqEcBasicsInfoGet) intoURLValues() url.Values {
+func (x ReqBasicsInfoGet) intoURLValues() url.Values {
 	var vals map[string]interface{}
 	jsonBytes, _ := json.Marshal(x)
 	_ = json.Unmarshal(jsonBytes, &vals)
@@ -25,18 +24,20 @@ func (x ReqEcBasicsInfoGet) intoURLValues() url.Values {
 	return ret
 }
 
-type RespEcBasicsInfoGet struct {
+type RespBasicsInfoGet struct {
 	CommonResp
 	Info struct {
-		Nickname    string `json:"nickname"`     // 店铺名称
-		HeadimgURL  string `json:"headimg_url"`  // 店铺头像URL
-		SubjectType string `json:"subject_type"` // 店铺类型，目前为"企业"或"个体工商户"
+		HeadimgURL  string `json:"headimg_url"`
+		Nickname    string `json:"nickname"`
+		Status      string `json:"status"`
+		SubjectType string `json:"subject_type"`
+		Username    string `json:"username"`
 	} `json:"info"`
 }
 
-var _ bodyer = RespEcBasicsInfoGet{}
+var _ bodyer = RespBasicsInfoGet{}
 
-func (x RespEcBasicsInfoGet) intoBody() ([]byte, error) {
+func (x RespBasicsInfoGet) intoBody() ([]byte, error) {
 	result, err := json.Marshal(x)
 	if err != nil {
 		return nil, err
@@ -44,14 +45,14 @@ func (x RespEcBasicsInfoGet) intoBody() ([]byte, error) {
 	return result, nil
 }
 
-func (c *ApiClient) ExecEcBasicsInfoGet(req ReqEcBasicsInfoGet) (RespEcBasicsInfoGet, error) {
-	var resp RespEcBasicsInfoGet
+func (c *ApiClient) ExecBasicsInfoGet(req ReqBasicsInfoGet) (RespBasicsInfoGet, error) {
+	var resp RespBasicsInfoGet
 	err := c.executeWXApiGet("/channels/ec/basics/info/get", req, &resp, true)
 	if err != nil {
-		return RespEcBasicsInfoGet{}, err
+		return RespBasicsInfoGet{}, err
 	}
 	if bizErr := resp.TryIntoErr(); bizErr != nil {
-		return RespEcBasicsInfoGet{}, bizErr
+		return RespBasicsInfoGet{}, bizErr
 	}
 	return resp, nil
 }
