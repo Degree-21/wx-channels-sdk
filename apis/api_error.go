@@ -603,3 +603,12 @@ const ErrCode200 ErrCode = 200
 
 // 未付款用户主动取消或超时未付款订单自动取消
 const ErrCode250 ErrCode = 250
+
+// 拆单发货暂不支持修改物流
+const ErrCode606040 ErrCode = 606040
+
+// 修改物流次数已达上限
+const ErrCode606041 ErrCode = 606041
+
+// 商品信息有误，请检查商品id，商品数量是否正确
+const ErrCode606042 ErrCode = 606042
