@@ -618,3 +618,6 @@ const ErrCode606041 ErrCode = 606041
 
 // 商品信息有误，请检查商品id，商品数量是否正确
 const ErrCode606042 ErrCode = 606042
+
+// 当前订单不支持此操作
+const ErrCode10020116 ErrCode = 10020116

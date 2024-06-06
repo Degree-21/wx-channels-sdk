@@ -174,3 +174,27 @@ if err != nil {
 - [抖店开放平台 GO SDK](https://github.com/zsmhub/doudian-sdk)
 - [微信视频号 GO SDK](https://github.com/zsmhub/wx-channels-sdk)
 - [小红书开放平台 GO SDK](https://github.com/zsmhub/xhs-sdk)
+
+
+
+#
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/list_get.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/get.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/price_update.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/merchantnotes_update.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/address_update.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/deliveryinfo_update.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/accept_address_modify_apply.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/reject_address_modify_apply.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/search.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/virtualtelnumber_get.html -prefix=订单
+go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/decode_order_sensitive_info.html -prefix=订单
+
+
+https://developers.weixin.qq.com/doc/channels/API/order/callback/channels_ec_order_new.html
+https://developers.weixin.qq.com/doc/channels/API/order/callback/channels_ec_order_cancel.html
+https://developers.weixin.qq.com/doc/channels/API/order/callback/channels_ec_order_pay.html
+https://developers.weixin.qq.com/doc/channels/API/order/callback/channels_ec_order_deliver.html
+https://developers.weixin.qq.com/doc/channels/API/order/callback/channels_ec_order_confirm.html
+https://developers.weixin.qq.com/doc/channels/API/order/callback/channels_ec_order_settle.html
+https://developers.weixin.qq.com/doc/channels/API/order/callback/channels_ec_order_ext_info.html

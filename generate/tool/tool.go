@@ -46,8 +46,44 @@ func GenerateStruct(rawJson string, structName string, subStruct bool) (code str
 		[]string{"json"}, subStruct, true,
 	)
 	if err != nil {
-		fmt.Println(rawJson)
-		return
+
+		// 找到最后一个逗号的位置
+		lastCommaIndex := strings.LastIndex(rawJson, ",")
+		if lastCommaIndex == -1 {
+			// 如果没有逗号，则返回原始的 JSON 字符串
+			//return jsonStr
+			fmt.Println(err.Error())
+			return
+		}
+		remove := rawJson[:lastCommaIndex] + rawJson[lastCommaIndex+1:]
+		rawCode, err = gojson.Generate(strings.NewReader(remove),
+			gojson.ParseJson,
+			structName,
+			"apis",
+			[]string{"json"}, subStruct, true,
+		)
+		if err != nil {
+			fmt.Println("=====")
+			fmt.Println(err.Error())
+			fmt.Println(remove)
+			return
+		}
+		//
+		//var t interface {
+		//}
+		//err = json.Unmarshal([]byte(remove), &t)
+		//if err != nil {
+		//	fmt.Println(err.Error())
+		//	return
+		//}
+		//
+		//// 移除最后一个逗号及其后面的所有字符
+		////return
+		//
+		////fmt.Println("1111")
+		////fmt.Println(rawJson)
+		////fmt.Println(err.Error())
+		//return
 	}
 
 	code = string(rawCode)
