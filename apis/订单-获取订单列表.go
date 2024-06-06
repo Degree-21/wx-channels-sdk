@@ -12,6 +12,10 @@ type ReqOrderListGet struct {
 		EndTime   int `json:"end_time"`
 		StartTime int `json:"start_time"`
 	} `json:"create_time_range"`
+	UpdateTimeRange struct {
+		EndTime   int `json:"end_time"`
+		StartTime int `json:"start_time"`
+	} `json:"update_time_range"`
 	NextKey  string `json:"next_key"`
 	PageSize int    `json:"page_size"`
 }
