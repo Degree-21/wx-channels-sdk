@@ -40,6 +40,13 @@ type ApiErrCode struct {
 	Msg  string       `json:"msg"`
 }
 
+// 枚举值
+type EnumCode struct {
+	Code apis.ErrCode `json:"code"`
+	Msg  string       `json:"msg"`
+	Name string       `json:"name"`
+}
+
 var apiDocVar = flag.String("doc", "", "[必填]微信文档地址")
 var apiPrefixVar = flag.String("prefix", "", "[选填]生成的文件名前缀")
 
@@ -126,6 +133,7 @@ func main() {
 	fmt.Printf("保存文件成功，文件路径: %s\n", savePath)
 
 	addApiErrorCodeToFile(generateApiErrCode(doc))
+	//addEnumCodeToFile(generateApiEnumCode(doc))
 }
 
 func generateApiCode(api Api) (result []byte, err error) {
@@ -169,10 +177,17 @@ func generateApiErrCode(doc *goquery.Document) []ApiErrCode {
 	var docErrCode *goquery.Selection
 	if doc.Find("#错误码~.table-wrp").Length() > 0 {
 		docErrCode = doc.Find("#错误码~.table-wrp")
-	} else {
+	} else if doc.Find("#返回码~.table-wrp").Length() > 0 {
 		docErrCode = doc.Find("#返回码~.table-wrp")
+	} else {
+		return codeSlice
 	}
+
 	docErrCode.Each(func(i int, selection *goquery.Selection) {
+		htmlStr, _ := selection.Find("tr").Html()
+		if strings.Contains(htmlStr, "<th style=\"text-align:left\">枚举值</th> <th style=\"text-align:left\">描述</th>") {
+			return
+		}
 		selection.Find("tr").Each(func(i int, selection *goquery.Selection) {
 			if i == 0 { // 表头
 				return
@@ -184,6 +199,7 @@ func generateApiErrCode(doc *goquery.Document) []ApiErrCode {
 			if len(tdSlice) < 2 { // 参数一般为 2 行
 				return
 			}
+			//fmt.Println(tdSlice)
 			codeInt, _ := strconv.Atoi(tdSlice[0])
 			code := apis.ErrCode(codeInt)
 			if code == apis.ErrCodeSuccess || code == apis.ErrCodeSysErr || code == apis.ErrCodeMinus2 {
@@ -193,6 +209,54 @@ func generateApiErrCode(doc *goquery.Document) []ApiErrCode {
 				Code: code,
 				Msg:  tdSlice[1],
 			})
+		})
+	})
+	return codeSlice
+}
+
+func generateApiEnumCode(doc *goquery.Document) []EnumCode {
+	//enumData := make(map[string]map[string]string)
+	if doc.Find("#枚举值~.table-wrp").Length() <= 0 {
+		return []EnumCode{}
+	}
+	//var docErrCode *goquery.Selection
+	var codeSlice []EnumCode
+	seen := make(map[string]bool)
+	doc.Find("h4").Each(func(_ int, h4 *goquery.Selection) {
+		id, exists := h4.Attr("id")
+		if !exists {
+			return
+		}
+
+		table := h4.NextAllFiltered("div.table-wrp").First().Find("table")
+		if table.Length() == 0 {
+			return
+		}
+		// 检查表头是否包含指定内容
+		table.Find("tbody tr").Each(func(_ int, tr *goquery.Selection) {
+			if strings.Contains(table.Text(), "字段名") {
+				return
+			}
+			tds := tr.Find("td")
+			if tds.Length() < 2 {
+				return
+			}
+
+			key := tds.Eq(0).Text()
+			value := tds.Eq(1).Text()
+
+			codeInt, _ := strconv.Atoi(key)
+			code := apis.ErrCode(codeInt)
+			codeValue := fmt.Sprintf("%s:%s:%s", key, value, id)
+			if !seen[codeValue] {
+				codeSlice = append(codeSlice, EnumCode{
+					Code: code,
+					Msg:  value,
+					Name: id,
+				})
+				seen[codeValue] = true
+			}
+			return
 		})
 	})
 	return codeSlice
@@ -221,4 +285,31 @@ const ErrCode%d ErrCode = %d
 	}
 
 	fmt.Printf("共新增 %d 个错误码\n", writeTotal)
+}
+func addEnumCodeToFile(codes []EnumCode) {
+	if len(codes) == 0 {
+		fmt.Printf("共新增 0 个枚举值\n")
+		return
+	}
+	filename := "./apis/api_enum.go"
+	fileContent := tool.ReadFile(filename)
+	var writeTotal int
+	for _, v := range codes {
+		//const EnumCodeOrderScene1 EnumCode = 1
+		fmt.Println(fmt.Sprintf("const EnumCode%s%v EnumCode", v.Name, v.Code))
+
+		// 已存在则跳过
+		if strings.Contains(fileContent, fmt.Sprintf("const EnumCode%s%v EnumCode", v.Name, v.Code)) {
+			continue
+		}
+		//
+		content := `
+// %s + %s
+const EnumCode%s%v EnumCode = %d
+		`
+		tool.AddContentToFile(filename, fmt.Sprintf(content, v.Name, v.Msg, v.Name, v.Code, v.Code))
+		writeTotal++
+	}
+
+	fmt.Printf("共新增 %d 个枚举值\n", writeTotal)
 }

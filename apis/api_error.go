@@ -582,3 +582,24 @@ const ErrCode10025010 ErrCode = 10025010
 
 // 更新冲突，请稍后重试
 const ErrCode10025011 ErrCode = 10025011
+
+// 待付款
+const ErrCode10 ErrCode = 10
+
+// 待发货
+const ErrCode20 ErrCode = 20
+
+// 部分发货
+const ErrCode21 ErrCode = 21
+
+// 待收货
+const ErrCode30 ErrCode = 30
+
+// 完成
+const ErrCode100 ErrCode = 100
+
+// 全部商品售后之后，订单取消
+const ErrCode200 ErrCode = 200
+
+// 未付款用户主动取消或超时未付款订单自动取消
+const ErrCode250 ErrCode = 250
