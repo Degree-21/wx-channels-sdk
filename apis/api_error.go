@@ -603,3 +603,9 @@ const ErrCode200 ErrCode = 200
 
 // 未付款用户主动取消或超时未付款订单自动取消
 const ErrCode250 ErrCode = 250
+
+// next_key参数不正确，本次请求参数与上一页不一致
+const ErrCode606006 ErrCode = 606006
+
+// 请求内订单过多，请缩短时间范围后重试
+const ErrCode31042 ErrCode = 31042

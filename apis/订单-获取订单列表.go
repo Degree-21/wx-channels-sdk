@@ -8,17 +8,12 @@ import (
 // 文档：https://developers.weixin.qq.com/doc/channels/API/order/list_get.html
 
 type ReqOrderListGet struct {
-	CreateTimeRange *TimeRange `json:"create_time_range,omitempty"`
-	UpdateTimeRange *TimeRange `json:"update_time_range,omitempty"`
-	Status          int        `json:"status,omitempty"`
-	Openid          string     `json:"openid,omitempty"`
-	NextKey         string     `json:"next_key,omitempty"`
-	PageSize        int        `json:"page_size,omitempty"`
-}
-
-type TimeRange struct {
-	StartTime int64 `json:"start_time"`
-	EndTime   int64 `json:"end_time"`
+	CreateTimeRange struct {
+		EndTime   int `json:"end_time"`
+		StartTime int `json:"start_time"`
+	} `json:"create_time_range"`
+	NextKey  string `json:"next_key"`
+	PageSize int    `json:"page_size"`
 }
 
 var _ bodyer = ReqOrderListGet{}

@@ -2,7 +2,6 @@ package apis
 
 import (
 	"encoding/json"
-	
 )
 
 // 获取订单详情
@@ -11,8 +10,6 @@ import (
 type ReqOrderGet struct {
 	OrderID string `json:"order_id"`
 }
-
-
 
 var _ bodyer = ReqOrderGet{}
 
@@ -24,18 +21,17 @@ func (x ReqOrderGet) intoBody() ([]byte, error) {
 	return result, nil
 }
 
-
 type RespOrderGet struct {
 	CommonResp
-	Order   struct {
+	Order struct {
 		AftersaleDetail struct {
 			AftersaleOrderList []struct {
 				AftersaleOrderID string `json:"aftersale_order_id"`
-				Status           int  `json:"status"`
+				Status           int    `json:"status"`
 			} `json:"aftersale_order_list"`
 			OnAftersaleOrderCnt int `json:"on_aftersale_order_cnt"`
 		} `json:"aftersale_detail"`
-		CreateTime  int  `json:"create_time"`
+		CreateTime  int    `json:"create_time"`
 		Openid      string `json:"openid"`
 		OrderDetail struct {
 			CouponInfo struct {
@@ -53,11 +49,11 @@ type RespOrderGet struct {
 				} `json:"address_info"`
 				DeliverMethod       int `json:"deliver_method"`
 				DeliveryProductInfo []struct {
-					DeliverType  int  `json:"deliver_type"`
+					DeliverType  int    `json:"deliver_type"`
 					DeliveryID   string `json:"delivery_id"`
-					DeliveryTime int  `json:"delivery_time"`
+					DeliveryTime int    `json:"delivery_time"`
 					ProductInfos []struct {
-						ProductCnt int  `json:"product_cnt"`
+						ProductCnt int    `json:"product_cnt"`
 						ProductID  string `json:"product_id"`
 						SkuID      string `json:"sku_id"`
 					} `json:"product_infos"`
@@ -70,21 +66,21 @@ type RespOrderGet struct {
 				FinderID      string `json:"finder_id"`
 				LiveID        string `json:"live_id"`
 				MerchantNotes string `json:"merchant_notes"`
-				OrderScene    int  `json:"order_scene"`
+				OrderScene    int    `json:"order_scene"`
 			} `json:"ext_info"`
 			PayInfo struct {
-				PayTime       int  `json:"pay_time"`
-				PaymentMethod int  `json:"payment_method"`
+				PayTime       int    `json:"pay_time"`
+				PaymentMethod int    `json:"payment_method"`
 				PrepayID      string `json:"prepay_id"`
-				PrepayTime    int  `json:"prepay_time"`
+				PrepayTime    int    `json:"prepay_time"`
 				TransactionID string `json:"transaction_id"`
 			} `json:"pay_info"`
 			PriceInfo struct {
-				DiscountedPrice int `json:"discounted_price"`
-				Freight         int `json:"freight"`
-				IsDiscounted    bool  `json:"is_discounted"`
-				OrderPrice      int `json:"order_price"`
-				ProductPrice    int `json:"product_price"`
+				DiscountedPrice int  `json:"discounted_price"`
+				Freight         int  `json:"freight"`
+				IsDiscounted    bool `json:"is_discounted"`
+				OrderPrice      int  `json:"order_price"`
+				ProductPrice    int  `json:"product_price"`
 			} `json:"price_info"`
 			ProductInfos []struct {
 				FinishAftersaleSkuCnt int `json:"finish_aftersale_sku_cnt"`
@@ -96,8 +92,8 @@ type RespOrderGet struct {
 					AttrKey   string `json:"attr_key"`
 					AttrValue string `json:"attr_value"`
 				} `json:"sku_attrs"`
-				SkuCnt   int  `json:"sku_cnt"`
-				SkuID    int  `json:"sku_id"`
+				SkuCnt   int    `json:"sku_cnt"`
+				SkuID    int    `json:"sku_id"`
 				ThumbImg string `json:"thumb_img"`
 				Title    string `json:"title"`
 			} `json:"product_infos"`
@@ -106,23 +102,23 @@ type RespOrderGet struct {
 				PredictCommissionFee int `json:"predict_commission_fee"`
 			} `json:"settle_info"`
 			SharerInfo struct {
-				HandlingProgress int  `json:"handling_progress"`
-				ShareScene       int  `json:"share_scene"`
+				HandlingProgress int    `json:"handling_progress"`
+				ShareScene       int    `json:"share_scene"`
 				SharerOpenid     string `json:"sharer_openid"`
-				SharerType       int  `json:"sharer_type"`
+				SharerType       int    `json:"sharer_type"`
 				SharerUnionid    string `json:"sharer_unionid"`
 			} `json:"sharer_info"`
 			SkuSharerInfos []struct {
-				ShareScene    int  `json:"share_scene"`
+				ShareScene    int    `json:"share_scene"`
 				SharerOpenid  string `json:"sharer_openid"`
-				SharerType    int  `json:"sharer_type"`
+				SharerType    int    `json:"sharer_type"`
 				SharerUnionid string `json:"sharer_unionid"`
 				SkuID         string `json:"sku_id"`
 			} `json:"sku_sharer_infos"`
 		} `json:"order_detail"`
 		OrderID    string `json:"order_id"`
-		Status     int  `json:"status"`
-		UpdateTime int  `json:"update_time"`
+		Status     int    `json:"status"`
+		UpdateTime int    `json:"update_time"`
 	} `json:"order"`
 }
 
