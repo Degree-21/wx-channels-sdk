@@ -621,3 +621,27 @@ const ErrCode606042 ErrCode = 606042
 
 // 当前订单不支持此操作
 const ErrCode10020116 ErrCode = 10020116
+
+// 微信号非法
+const ErrCode10070000 ErrCode = 10070000
+
+// 用户已绑定为分享员
+const ErrCode10070001 ErrCode = 10070001
+
+// 绑定的分享员数量达到上限(20000个)
+const ErrCode10070002 ErrCode = 10070002
+
+// 用户已绑定为店铺分享员
+const ErrCode10070005 ErrCode = 10070005
+
+// 参数错误
+const ErrCode10070006 ErrCode = 10070006
+
+// 小店店员不可绑定普通分享员
+const ErrCode10070007 ErrCode = 10070007
+
+// 小店的视频号带货身份为达人号，不允许使用该功能，如需使用，请将带货身份修改为商家
+const ErrCode10080002 ErrCode = 10080002
+
+// openid非法
+const ErrCode10070004 ErrCode = 10070004
