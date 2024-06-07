@@ -645,3 +645,12 @@ const ErrCode10080002 ErrCode = 10080002
 
 // openid非法
 const ErrCode10070004 ErrCode = 10070004
+
+// 预约id和达人id不匹配，或预约已经取消
+const ErrCode10070009 ErrCode = 10070009
+
+// 达人id不存在
+const ErrCode10070010 ErrCode = 10070010
+
+// 直播id和达人id不匹配，或直播已经结束
+const ErrCode10070008 ErrCode = 10070008
