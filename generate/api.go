@@ -111,6 +111,10 @@ func main() {
 	}
 
 	// tip: Get 方式的接口量少没做兼容，请求参数需手动整理到 Req 结构体，Post 则不用
+
+	if strings.Contains(api.DocURL, "get.html") {
+		fmt.Println("该文档为get文档 Get 方式的接口量少没做兼容，请求参数需手动整理到 Req 结构体，Post 则不用")
+	}
 	jsonCodeTotal := doc.Find("pre[class=language-json] > code").Length()
 	doc.Find("pre[class=language-json] > code").Each(func(i int, selection *goquery.Selection) {
 		if i == 0 && (api.IsGet || jsonCodeTotal < 2) {

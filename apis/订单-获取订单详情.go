@@ -8,7 +8,8 @@ import (
 // 文档：https://developers.weixin.qq.com/doc/channels/API/order/get.html
 
 type ReqOrderGet struct {
-	OrderID string `json:"order_id"`
+	OrderID             string `json:"order_id"`
+	EncodeSensitiveInfo bool   `json:"encode_sensitive_info"`
 }
 
 var _ bodyer = ReqOrderGet{}
