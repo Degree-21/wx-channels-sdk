@@ -22,3 +22,17 @@ func (x *CommonResp) TryIntoErr() error {
 		Msg:  x.ErrMsg,
 	}
 }
+
+func (x *CommonResp) GetErrCode() ErrCode {
+	if x.IsOK() {
+		return ErrCodeSuccess
+	}
+	return x.ErrCode
+}
+
+func (x *CommonResp) GetErrMsg() string {
+	if x.IsOK() {
+		return ""
+	}
+	return x.ErrMsg
+}
