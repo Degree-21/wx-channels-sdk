@@ -654,3 +654,15 @@ const ErrCode10070010 ErrCode = 10070010
 
 // 直播id和达人id不匹配，或直播已经结束
 const ErrCode10070008 ErrCode = 10070008
+
+// 提交等待结果
+const ErrCode2 ErrCode = 2
+
+// 未通过审核
+const ErrCode3 ErrCode = 3
+
+// 审核通过
+const ErrCode4 ErrCode = 4
+
+// 已删除
+const ErrCode5 ErrCode = 5
