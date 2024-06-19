@@ -8,11 +8,11 @@ import (
 // 文档：https://developers.weixin.qq.com/doc/channels/API/order/list_get.html
 
 type ReqOrderListGet struct {
-	CreateTimeRange struct {
+	CreateTimeRange *struct {
 		EndTime   int `json:"end_time,omitempty"`
 		StartTime int `json:"start_time,omitempty"`
 	} `json:"create_time_range,omitempty"`
-	UpdateTimeRange struct {
+	UpdateTimeRange *struct {
 		EndTime   int `json:"end_time,omitempty"`
 		StartTime int `json:"start_time,omitempty"`
 	} `json:"update_time_range,omitempty"`
