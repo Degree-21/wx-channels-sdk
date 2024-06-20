@@ -84,11 +84,11 @@ type RespOrderGet struct {
 				ProductPrice    int  `json:"product_price"`
 			} `json:"price_info"`
 			ProductInfos []struct {
-				FinishAftersaleSkuCnt int `json:"finish_aftersale_sku_cnt"`
-				MarketPrice           int `json:"market_price"`
-				OnAftersaleSkuCnt     int `json:"on_aftersale_sku_cnt"`
-				ProductID             int `json:"product_id"`
-				SalePrice             int `json:"sale_price"`
+				FinishAftersaleSkuCnt int    `json:"finish_aftersale_sku_cnt"`
+				MarketPrice           int    `json:"market_price"`
+				OnAftersaleSkuCnt     int    `json:"on_aftersale_sku_cnt"`
+				ProductID             string `json:"product_id"`
+				SalePrice             int    `json:"sale_price"`
 				SkuAttrs              []struct {
 					AttrKey   string `json:"attr_key"`
 					AttrValue string `json:"attr_value"`
