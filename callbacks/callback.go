@@ -2,6 +2,7 @@ package callbacks
 
 import (
 	"errors"
+	"fmt"
 	"github.com/zsmhub/wx-channels-sdk/internal/envelope"
 	"github.com/zsmhub/wx-channels-sdk/internal/signature"
 	"io/ioutil"
@@ -37,6 +38,7 @@ func (cb *CallbackHandler) GetCallbackMsg(r *http.Request) (CallbackMessage, err
 	if err != nil {
 		return CallbackMessage{}, err
 	}
+	fmt.Println(string(body))
 
 	// 验签
 	ev, err := cb.ep.HandleIncomingMsg(r.URL, body)
