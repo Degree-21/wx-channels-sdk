@@ -101,6 +101,7 @@ type RespOrderGet struct {
 			SettleInfo struct {
 				CommissionFee        int `json:"commission_fee"`
 				PredictCommissionFee int `json:"predict_commission_fee"`
+				SettleTime           int `json:"settle_time"`
 			} `json:"settle_info"`
 			SharerInfo struct {
 				HandlingProgress int    `json:"handling_progress"`
