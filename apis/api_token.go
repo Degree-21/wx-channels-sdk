@@ -115,7 +115,8 @@ func (t *token) syncToken() error {
 }
 
 func Retry(o backoff.Operation) error {
-	ctx, cancelFunc := context.WithTimeout(context.Background(), 1*time.Minute)
+	//ctx, cancelFunc := context.WithTimeout(context.Background(), 1*time.Minute)
+	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancelFunc()
 	retryer := backoff.WithContext(backoff.NewExponentialBackOff(), ctx)
 	return backoff.Retry(o, retryer)
