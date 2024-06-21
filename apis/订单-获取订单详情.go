@@ -94,7 +94,7 @@ type RespOrderGet struct {
 					AttrValue string `json:"attr_value"`
 				} `json:"sku_attrs"`
 				SkuCnt   int    `json:"sku_cnt"`
-				SkuID    int    `json:"sku_id"`
+				SkuID    string `json:"sku_id"`
 				ThumbImg string `json:"thumb_img"`
 				Title    string `json:"title"`
 			} `json:"product_infos"`
