@@ -93,11 +93,11 @@ type RespOrderGet struct {
 					AttrKey   string `json:"attr_key"`
 					AttrValue string `json:"attr_value"`
 				} `json:"sku_attrs"`
-				SkuCnt    int         `json:"sku_cnt"`
-				SkuID     string      `json:"sku_id"`
-				ThumbImg  string      `json:"thumb_img"`
-				Title     string      `json:"title"`
-				RealPrice interface{} `json:"real_price"`
+				SkuCnt    int     `json:"sku_cnt"`
+				SkuID     string  `json:"sku_id"`
+				ThumbImg  string  `json:"thumb_img"`
+				Title     string  `json:"title"`
+				RealPrice float64 `json:"real_price"`
 			} `json:"product_infos"`
 			SettleInfo struct {
 				CommissionFee        int `json:"commission_fee"`
