@@ -2,7 +2,6 @@ package apis
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // 上传图片，固定上传类型upload_type=1
@@ -52,7 +51,7 @@ func (x RespImgUpload) intoBody() ([]byte, error) {
 
 func (c *ApiClient) ExecImgUpload(req ReqImgUpload) (RespImgUpload, error) {
 	var resp RespImgUpload
-	reqUrl := fmt.Sprintf("/channels/ec/basics/img/upload?upload_type=1&resp_type=%d", req.RespType)
+	reqUrl := "/channels/ec/basics/img/upload"
 	err := c.executeWXApiPost(reqUrl, req, &resp, true)
 	if err != nil {
 		return RespImgUpload{}, err
