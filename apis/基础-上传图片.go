@@ -9,8 +9,16 @@ import (
 // 文档：https://developers.weixin.qq.com/doc/channels/API/basics/img_upload.html
 
 type ReqImgUpload struct {
-	ImgUrl   string `json:"img_url"`   // upload_type=1时必填，图片url
-	RespType int    `json:"resp_type"` // 返回数据类型。0:media_id和pay_media_id；1:图片链接（商品信息相关图片请务必使用此参数得到链接）
+	// UploadType 上传类型。0: 二进制流；1: 图片 URL（不支持 301/302 跳转）。该参数为 URL 参数
+	UploadType int `json:"upload_type" url:"upload_type"`
+	// RespType 返回数据类型。0: media_id 和 pay_media_id；1: 图片链接（商品信息相关图片请务必使用此参数得到链接）。该参数为 URL 参数
+	RespType int `json:"resp_type" url:"resp_type"`
+	// Height 图片的高，单位：像素。upload_type=0 时必填。该参数为 URL 参数
+	Height int `json:"height,omitempty" url:"height,omitempty" `
+	// Width 图片的宽，单位：像素。upload_type=0 时必填。该参数为 URL 参数
+	Width int `json:"width,omitempty" url:"width,omitempty"`
+	// ImgURL 图片 URL。upload_type=1 时必填。该参数为 POST 请求参数
+	ImgURL string `json:"img_url,omitempty" form:"img_url,omitempty" `
 }
 
 var _ bodyer = ReqImgUpload{}
