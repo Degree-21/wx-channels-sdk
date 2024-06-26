@@ -13,9 +13,9 @@ type ReqImgUpload struct {
 	// RespType 返回数据类型。0: media_id 和 pay_media_id；1: 图片链接（商品信息相关图片请务必使用此参数得到链接）。该参数为 URL 参数
 	RespType int `json:"resp_type" url:"resp_type"`
 	// Height 图片的高，单位：像素。upload_type=0 时必填。该参数为 URL 参数
-	Height int `json:"height,omitempty" url:"height,omitempty" `
+	Height *int `json:"height,omitempty" url:"height,omitempty" `
 	// Width 图片的宽，单位：像素。upload_type=0 时必填。该参数为 URL 参数
-	Width int `json:"width,omitempty" url:"width,omitempty"`
+	Width *int `json:"width,omitempty" url:"width,omitempty"`
 	// ImgURL 图片 URL。upload_type=1 时必填。该参数为 POST 请求参数
 	ImgURL string `json:"img_url,omitempty" form:"img_url,omitempty" `
 }
