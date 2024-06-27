@@ -13,6 +13,18 @@ import (
 	"sync"
 )
 
+type AppType int
+
+const (
+	// 视频号小店
+	AppTypeShop = 1
+	// 视频号橱窗
+	AppTypeShopWindows = 2
+)
+
+// access_token#type#appid
+const TokenCacheKeyFmtRule = "%s#%d#%s"
+
 // API调用客户端
 type ApiClient struct {
 	AppId     string // 应用唯一身份标识
@@ -25,7 +37,7 @@ type ApiClient struct {
 }
 
 // API客户端初始化
-func NewApiClient(appId, appSecret string, opts Options) *ApiClient {
+func NewApiClient(appId, appSecret string, appType AppType, opts Options) *ApiClient {
 	accessTokenName := "access_token"
 	c := ApiClient{
 		AppId:           appId,
@@ -34,7 +46,7 @@ func NewApiClient(appId, appSecret string, opts Options) *ApiClient {
 		accessToken: &token{
 			mutex:         &sync.RWMutex{},
 			dcsToken:      opts.DcsToken,
-			tokenCacheKey: fmt.Sprintf("%s#%s", accessTokenName, appId),
+			tokenCacheKey: fmt.Sprintf(TokenCacheKeyFmtRule, accessTokenName, appType, appId),
 		},
 		logger: opts.Logger,
 	}
