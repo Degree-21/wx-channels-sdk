@@ -22,6 +22,7 @@ func (x ReqGetlivedata) intoBody() ([]byte, error) {
 }
 
 type RespGetlivedata struct {
+	CommonResp
 	AverageWatchSecondsPerAudience int `json:"average_watch_seconds_per_audience"`
 	CommentUv                      int `json:"comment_uv"`
 	HotQuota                       int `json:"hot_quota"`
