@@ -20,6 +20,7 @@ func (x ReqGetlivelist) intoBody() ([]byte, error) {
 }
 
 type RespGetlivelist struct {
+	CommonResp
 	Ds int `json:"ds"`
 }
 
