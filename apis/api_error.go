@@ -666,3 +666,24 @@ const ErrCode4 ErrCode = 4
 
 // 已删除
 const ErrCode5 ErrCode = 5
+
+// 参数错误
+const ErrCode10024000 ErrCode = 10024000
+
+// 不合法的finder_id
+const ErrCode10024001 ErrCode = 10024001
+
+// 不合法的appid
+const ErrCode10024003 ErrCode = 10024003
+
+// 不合法的product_id
+const ErrCode10024009 ErrCode = 10024009
+
+// 橱窗操作失败
+const ErrCode10024010 ErrCode = 10024010
+
+// 未获得橱窗授权
+const ErrCode10024011 ErrCode = 10024011
+
+// 橱窗上架商品失败
+const ErrCode10024021 ErrCode = 10024021

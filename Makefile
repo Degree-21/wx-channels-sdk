@@ -1,5 +1,5 @@
 # 生成API代码
-# go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/order/accept_address_modify_apply.html  -prefix=订单
+# go run generate/api.go -doc=https://developers.weixin.qq.com/doc/channels/API/leagueheadsupplier/getbalance.html  -prefix=优选联盟
 api:
 	go run generate/api.go -doc=$(doc) -prefix=$(prefix)
 
