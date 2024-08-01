@@ -26,7 +26,7 @@ type RespFinderliveGetfinderlivenoticerecordlist struct {
 		HeadURL       string `json:"head_url"`
 		Nickname      string `json:"nickname"`
 		NoticeID      string `json:"notice_id"`
-		StartTime     string `json:"start_time"`
+		StartTime     int    `json:"start_time"`
 		Status        int    `json:"status"`
 		StatusWording string `json:"status_wording"`
 	} `json:"live_notice_list"`
